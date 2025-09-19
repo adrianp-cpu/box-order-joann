@@ -5,8 +5,1298 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#3498db">
     <meta name="description" content="Multi-product box order calculator with supplier dashboard and order tracking">
-    <meta name="keywords" content="box calculator, supplier dashboard, order tracking, business tool">
     <title>Box Order & Supplier Dashboard</title>
     
     <!-- PWA Manifest -->
-    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIkJveCBPcmRlciAmIFN1cHBsaWVyIERhc2hib2FyZCIsCiAgInNob3J0X25hbWUiOiAiQm94T3JkZXIiLAogICJkZXNjcmlwdGlvbiI6ICJNdWx0aS1wcm9kdWN0IGJveCBvcmRlciBjYWxjdWxhdG9yIHdpdGggc3VwcGxpZXIgZGFzaGJvYXJkIGFuZCBvcmRlciB0cmFja2luZyIsCiAgInN0YXJ0X3VybCI6ICIvIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjZjVmNWY1IiwKICAidGhlbWVfY29sb3IiOiAiIzM0OThkYiIsCiAgImljb25zIjogWwogICAgewogICAgICAic3JjIjogImRhdGE6aW1hZ2Uvc3ZnK3htbDtiYXNlNjQsUEhOMlp5QjNhV1IwYUQwaU1UQXdJaUJvWldsbmFIUTlJakV3TUNJZ2RtbGxkMEp2ZUQwaU1DQXdJREV3TUNBMU1EQWlJSGh0Ykc1elBTSm9kSFJ3T2k4dmQzZDNMbmN6TG05eVp5OHlNREF3TDNOMlp5SStQR05wY21Oc1pTQmplRDBpTlRBaUlHTjVQU0kxTUNJZ2NqMGlNelFpSUdacGJHdzlJaU16TkRrNFpHSWlMejQ4ZEhWNGRDQjRQU0kxTUNJZ2VUMGlOalVpSUhSbGVIUXRZVzVqYUc5eVBTSnRhV1JrYkdVaUlIUnNhVzVsSUda
+    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIkJveCBPcmRlciAmIFN1cHBsaWVyIERhc2hib2FyZCIsCiAgInNob3J0X25hbWUiOiAiQm94T3JkZXIiLAogICJkZXNjcmlwdGlvbiI6ICJNdWx0aS1wcm9kdWN0IGJveCBvcmRlciBjYWxjdWxhdG9yIHdpdGggc3VwcGxpZXIgZGFzaGJvYXJkIiwKICAic3RhcnRfdXJsIjogIi8iLAogICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLAogICJiYWNrZ3JvdW5kX2NvbG9yIjogIiNmNWY1ZjUiLAogICJ0aGVtZV9jb2xvciI6ICIjMzQ5OGRiIiwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCM2FXUjBhRDBpTVRrd0lpQm9aV2xuYUhROUlqRTVNQ0lnZG1sbGQwSnZlRDBpTUNBd0lERTVNQ0F4T1RBaVBqeHlaV04wSUhrOUlqUXdJaUI0UFNJME1DSWdkMmxrZEdnOUlqRXhNQ0lnYUdWcFoyaDBQU0l4TVRBZ1ptbHNiRDBpSXpNME9UaGtZaUl2UGp4MFpYaDBJSGc5SWprMUlpQjVQU0k1TlNJZ2RHVjRkQzFoYm1Ob2IzSTlJbTFwWkdSc1pTSWdabTl1ZEMxemFYcGxQU0l5TUNJZ1ptbHNiRDBpSW1abVptWWlQa0pQV0VVOEwzUmxlSFErUEM5emRtYysKIiwKICAgICAgInR5cGUiOiAiaW1hZ2Uvc3ZnK3htbCIsCiAgICAgICJzaXplcyI6ICJhbnkiCiAgICB9CiAgXSwKICAib3JpZW50YXRpb24iOiAiYW55IiwKICAiY2F0ZWdvcmllcyI6IFsiYnVzaW5lc3MiLCAicHJvZHVjdGl2aXR5Il0KfQ==">
+    
+    <!-- Apple PWA Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="BoxOrder">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #ecf0f1;
+        }
+        
+        .nav-tab {
+            background: none;
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            color: #7f8c8d;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-tab.active {
+            color: #3498db;
+            border-bottom-color: #3498db;
+            font-weight: bold;
+        }
+        
+        .nav-tab:hover {
+            color: #2980b9;
+            background: #f8f9fa;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .budget-section {
+            background: #e8f4fd;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .budget-input {
+            font-size: 18px;
+            padding: 10px;
+            border: 2px solid #3498db;
+            border-radius: 5px;
+            width: 200px;
+            text-align: center;
+        }
+        
+        .products-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        
+        .product-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            align-items: center;
+        }
+        
+        .product-field {
+            flex: 1;
+            min-width: 120px;
+        }
+        
+        .product-field label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #34495e;
+            font-size: 12px;
+        }
+        
+        .product-field input {
+            width: 100%;
+            padding: 8px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        
+        .product-field input:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+        
+        .remove-btn {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        .remove-btn:hover {
+            background: #c0392b;
+        }
+        
+        .add-product-btn, .calculate-btn, .export-btn {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        
+        .calculate-btn {
+            background: #3498db;
+            display: block;
+            margin: 20px auto;
+            padding: 15px 40px;
+            font-size: 18px;
+        }
+        
+        .add-product-btn:hover, .export-btn:hover {
+            background: #229954;
+        }
+        
+        .calculate-btn:hover {
+            background: #2980b9;
+        }
+        
+        .spreadsheet {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .spreadsheet th, .spreadsheet td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        .spreadsheet th {
+            background-color: #3498db;
+            color: white;
+            font-weight: bold;
+            font-size: 12px;
+        }
+        
+        .spreadsheet tbody tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .spreadsheet tbody tr:hover {
+            background-color: #e3f2fd;
+        }
+        
+        .currency {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        
+        .profit-positive {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        
+        .profit-negative {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        
+        .total-row {
+            background-color: #2c3e50 !important;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .summary {
+            background: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        
+        .summary h3 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        .summary-value {
+            font-weight: bold;
+            color: #27ae60;
+        }
+        
+        .budget-warning {
+            background: #fff3cd;
+            color: #856404;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border: 1px solid #ffeaa7;
+        }
+        
+        .budget-exceeded {
+            background: #f8d7da;
+            color: #721c24;
+            border-color: #f5c6cb;
+        }
+        
+        .export-section {
+            text-align: center;
+            margin: 20px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .dashboard-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-left: 5px solid #3498db;
+        }
+        
+        .dashboard-card h3 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        
+        .metric-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #27ae60;
+            margin: 10px 0;
+        }
+        
+        .metric-label {
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+        
+        .supplier-performance {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            border-left: 4px solid #e74c3c;
+        }
+        
+        .supplier-performance.good {
+            border-left-color: #27ae60;
+        }
+        
+        .supplier-performance.average {
+            border-left-color: #f39c12;
+        }
+        
+        .performance-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .performance-metrics {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .performance-metric {
+            text-align: center;
+        }
+        
+        .performance-metric-value {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .performance-metric-label {
+            font-size: 12px;
+            color: #7f8c8d;
+        }
+        
+        .order-history {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .order-entry {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-left: 4px solid #3498db;
+        }
+        
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .order-date {
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+        
+        .order-status {
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .status-completed {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .status-shipped {
+            background: #cce5ff;
+            color: #004085;
+        }
+        
+        .pwa-install-prompt {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            background: #3498db;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .pwa-install-prompt button {
+            background: white;
+            color: #3498db;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .pwa-close {
+            margin-left: auto;
+            background: none !important;
+            color: white !important;
+            font-size: 20px;
+            padding: 0 8px !important;
+        }
+        
+        .offline-indicator {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: #e74c3c;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            z-index: 1000;
+            display: none;
+        }
+        
+        .offline-indicator.online {
+            background: #27ae60;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+            
+            .product-row {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .nav-tabs {
+                flex-direction: column;
+            }
+            
+            .nav-tab {
+                text-align: left;
+                border-bottom: none;
+                border-right: 3px solid transparent;
+            }
+            
+            .nav-tab.active {
+                border-right-color: #3498db;
+                border-bottom-color: transparent;
+            }
+            
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .budget-input {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            h1 {
+                font-size: 1.5em;
+            }
+            
+            .spreadsheet {
+                font-size: 12px;
+            }
+            
+            .spreadsheet th, .spreadsheet td {
+                padding: 6px 4px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .spreadsheet th:nth-child(4),
+            .spreadsheet td:nth-child(4),
+            .spreadsheet th:nth-child(6),
+            .spreadsheet td:nth-child(6) {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- PWA Install Prompt -->
+        <div id="pwa-install-prompt" class="pwa-install-prompt">
+            <span>📱 Install this app for better experience!</span>
+            <button onclick="installPWA()">Install</button>
+            <button class="pwa-close" onclick="closePWAPrompt()">×</button>
+        </div>
+        
+        <!-- Offline Indicator -->
+        <div id="offline-indicator" class="offline-indicator">📶 Offline Mode</div>
+        
+        <h1>📦 Multi-Product Box Order & Supplier Dashboard</h1>
+        
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showTab('calculator')">📊 Order Calculator</button>
+            <button class="nav-tab" onclick="showTab('dashboard')">📈 Supplier Dashboard</button>
+        </div>
+        
+        <div id="calculator-tab" class="tab-content active">
+            <div class="budget-section">
+                <h3>💰 Total Budget</h3>
+                <input type="number" id="totalBudget" class="budget-input" value="350000" min="0" placeholder="Enter total budget">
+                <p style="margin: 10px 0 0 0; color: #7f8c8d;">Enter your total available budget for all box types</p>
+            </div>
+            
+            <div class="products-section">
+                <h3>📋 Product Lines</h3>
+                <div id="products-container"></div>
+                <button class="add-product-btn" onclick="addProduct()">+ Add Product Type</button>
+                <button class="calculate-btn" onclick="calculateOptimalOrder()">Calculate Optimal Order</button>
+            </div>
+            
+            <div id="budget-status"></div>
+            
+            <table class="spreadsheet" id="spreadsheet">
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Supplier</th>
+                        <th>Quantity</th>
+                        <th>Cost per Box (₱)</th>
+                        <th>Selling Price (₱)</th>
+                        <th>Total Cost (₱)</th>
+                        <th>Total Revenue (₱)</th>
+                        <th>Profit per Box (₱)</th>
+                        <th>Total Profit (₱)</th>
+                        <th>Profit Margin (%)</th>
+                    </tr>
+                </thead>
+                <tbody id="spreadsheet-body"></tbody>
+            </table>
+            
+            <div class="export-section">
+                <h3>📄 Export Options</h3>
+                <button class="export-btn" onclick="exportToExcel()">📊 Download Excel Report</button>
+                <button class="export-btn" onclick="exportToCSV()">📋 Download CSV File</button>
+                <p style="margin: 10px 0 0 0; color: #7f8c8d; font-size: 14px;">
+                    Export your complete analysis with all calculations and supplier information
+                </p>
+            </div>
+            
+            <div class="summary" id="summary"></div>
+        </div>
+        
+        <div id="dashboard-tab" class="tab-content">
+            <div class="dashboard-grid">
+                <div class="dashboard-card">
+                    <h3>📊 Overall Metrics</h3>
+                    <div class="metric-value" id="total-suppliers">0</div>
+                    <div class="metric-label">Active Suppliers</div>
+                    <div class="metric-value" id="total-orders">0</div>
+                    <div class="metric-label">Total Orders Processed</div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <h3>💰 Financial Overview</h3>
+                    <div class="metric-value" id="total-spent">₱0</div>
+                    <div class="metric-label">Total Amount Invested</div>
+                    <div class="metric-value" id="total-profit-dash">₱0</div>
+                    <div class="metric-label">Total Profit Generated</div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <h3>🏆 Best Performer</h3>
+                    <div class="metric-value" id="best-supplier">-</div>
+                    <div class="metric-label">Top Supplier by Margin</div>
+                    <div class="metric-value" id="best-margin">0%</div>
+                    <div class="metric-label">Profit Margin</div>
+                </div>
+            </div>
+            
+            <div class="dashboard-card">
+                <h3>🏢 Supplier Performance Analysis</h3>
+                <div id="supplier-performance-list"></div>
+            </div>
+            
+            <div class="dashboard-card">
+                <h3>📋 Order History</h3>
+                <button class="add-product-btn" onclick="saveCurrentOrder()">💾 Save Current Order</button>
+                <div id="order-history" class="order-history"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script>
+        let productCounter = 0;
+        let orderHistory = JSON.parse(localStorage.getItem('boxOrderHistory')) || [];
+        let dashboardData = JSON.parse(localStorage.getItem('boxDashboardData')) || {
+            suppliers: {},
+            totalOrders: 0,
+            totalInvestment: 0,
+            totalProfit: 0
+        };
+        
+        let deferredPrompt;
+        let isOnline = navigator.onLine;
+        
+        function formatCurrency(amount) {
+            return '₱' + amount.toLocaleString('en-PH', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+        }
+        
+        function addProduct() {
+            productCounter++;
+            const container = document.getElementById('products-container');
+            const productRow = document.createElement('div');
+            productRow.className = 'product-row';
+            productRow.id = `product-${productCounter}`;
+            
+            productRow.innerHTML = `
+                <div class="product-field">
+                    <label>Product Name</label>
+                    <input type="text" id="name-${productCounter}" value="Box Type ${productCounter}" placeholder="Product name">
+                </div>
+                <div class="product-field">
+                    <label>Supplier</label>
+                    <input type="text" id="supplier-${productCounter}" value="Supplier ${productCounter}" placeholder="Supplier name">
+                </div>
+                <div class="product-field">
+                    <label>Cost per Box (₱)</label>
+                    <input type="number" id="cost-${productCounter}" value="${14000 + (productCounter - 1) * 1000}" min="0" placeholder="Cost per box">
+                </div>
+                <div class="product-field">
+                    <label>Selling Price (₱)</label>
+                    <input type="number" id="selling-${productCounter}" value="${16000 + (productCounter - 1) * 1000}" min="0" placeholder="Selling price">
+                </div>
+                <div class="product-field">
+                    <label>Target Quantity</label>
+                    <input type="number" id="quantity-${productCounter}" value="5" min="0" placeholder="Quantity">
+                </div>
+                <button class="remove-btn" onclick="removeProduct(${productCounter})">Remove</button>
+            `;
+            
+            container.appendChild(productRow);
+        }
+        
+        function removeProduct(id) {
+            const product = document.getElementById(`product-${id}`);
+            if (product) {
+                product.remove();
+            }
+        }
+        
+        function calculateOptimalOrder() {
+            const totalBudget = parseFloat(document.getElementById('totalBudget').value) || 0;
+            const products = [];
+            
+            const productRows = document.querySelectorAll('.product-row');
+            productRows.forEach(row => {
+                const id = row.id.split('-')[1];
+                const name = document.getElementById(`name-${id}`).value || `Product ${id}`;
+                const supplier = document.getElementById(`supplier-${id}`).value || `Supplier ${id}`;
+                const cost = parseFloat(document.getElementById(`cost-${id}`).value) || 0;
+                const selling = parseFloat(document.getElementById(`selling-${id}`).value) || 0;
+                const quantity = parseInt(document.getElementById(`quantity-${id}`).value) || 0;
+                
+                if (cost > 0 && quantity > 0) {
+                    products.push({
+                        name, supplier, cost, selling, quantity,
+                        totalCost: cost * quantity,
+                        totalRevenue: selling * quantity,
+                        profitPerBox: selling - cost,
+                        totalProfit: (selling - cost) * quantity,
+                        profitMargin: cost > 0 ? ((selling - cost) / cost) * 100 : 0
+                    });
+                }
+            });
+            
+            if (products.length === 0) {
+                alert('Please add at least one product with valid cost and quantity');
+                return;
+            }
+            
+            const totalCost = products.reduce((sum, p) => sum + p.totalCost, 0);
+            const totalRevenue = products.reduce((sum, p) => sum + p.totalRevenue, 0);
+            const totalProfit = products.reduce((sum, p) => sum + p.totalProfit, 0);
+            const overallProfitMargin = totalCost > 0 ? (totalProfit / totalCost) * 100 : 0;
+            const budgetRemaining = totalBudget - totalCost;
+            
+            // Update budget status
+            const budgetStatus = document.getElementById('budget-status');
+            if (totalCost > totalBudget) {
+                budgetStatus.innerHTML = `
+                    <div class="budget-warning budget-exceeded">
+                        ⚠️ <strong>Budget Exceeded!</strong> Your order costs ${formatCurrency(totalCost)} but your budget is only ${formatCurrency(totalBudget)}. 
+                        You need an additional ${formatCurrency(totalCost - totalBudget)} or reduce your order quantities.
+                    </div>
+                `;
+            } else if (totalCost > totalBudget * 0.9) {
+                budgetStatus.innerHTML = `
+                    <div class="budget-warning">
+                        💡 <strong>High Budget Usage:</strong> You're using ${((totalCost/totalBudget) * 100).toFixed(1)}% of your budget. 
+                        Remaining: ${formatCurrency(budgetRemaining)}
+                    </div>
+                `;
+            } else {
+                budgetStatus.innerHTML = `
+                    <div class="budget-warning">
+                        ✅ <strong>Budget OK:</strong> Using ${((totalCost/totalBudget) * 100).toFixed(1)}% of budget. 
+                        Remaining: ${formatCurrency(budgetRemaining)}
+                    </div>
+                `;
+            }
+            
+            // Populate table
+            const tbody = document.getElementById('spreadsheet-body');
+            tbody.innerHTML = '';
+            
+            products.forEach(product => {
+                const row = tbody.insertRow();
+                row.innerHTML = `
+                    <td><strong>${product.name}</strong></td>
+                    <td style="color: #7f8c8d; font-style: italic;">${product.supplier}</td>
+                    <td>${product.quantity}</td>
+                    <td class="currency">${formatCurrency(product.cost)}</td>
+                    <td class="currency">${formatCurrency(product.selling)}</td>
+                    <td class="currency">${formatCurrency(product.totalCost)}</td>
+                    <td class="currency">${formatCurrency(product.totalRevenue)}</td>
+                    <td class="${product.profitPerBox >= 0 ? 'profit-positive' : 'profit-negative'}">${formatCurrency(product.profitPerBox)}</td>
+                    <td class="${product.totalProfit >= 0 ? 'profit-positive' : 'profit-negative'}">${formatCurrency(product.totalProfit)}</td>
+                    <td class="${product.profitMargin >= 0 ? 'profit-positive' : 'profit-negative'}">${product.profitMargin.toFixed(1)}%</td>
+                `;
+            });
+            
+            // Add total row
+            const totalRow = tbody.insertRow();
+            totalRow.className = 'total-row';
+            totalRow.innerHTML = `
+                <td><strong>TOTAL</strong></td>
+                <td><strong>All Suppliers</strong></td>
+                <td><strong>${products.reduce((sum, p) => sum + p.quantity, 0)}</strong></td>
+                <td><strong>${formatCurrency(totalProfit)}</strong></td>
+                <td><strong>${overallProfitMargin.toFixed(1)}%</strong></td>
+            `;
+            
+            // Update summary
+            const bestProduct = products.reduce((best, current) => 
+                current.profitMargin > best.profitMargin ? current : best
+            );
+            
+            const summary = document.getElementById('summary');
+            summary.innerHTML = `
+                <h3>📊 Order Summary</h3>
+                <div class="summary-item">
+                    <span>Total Budget:</span>
+                    <span class="summary-value">${formatCurrency(totalBudget)}</span>
+                </div>
+                <div class="summary-item">
+                    <span>Total Investment Required:</span>
+                    <span class="summary-value ${totalCost <= totalBudget ? '' : 'profit-negative'}">${formatCurrency(totalCost)}</span>
+                </div>
+                <div class="summary-item">
+                    <span>Budget Remaining:</span>
+                    <span class="summary-value ${budgetRemaining >= 0 ? 'profit-positive' : 'profit-negative'}">${formatCurrency(budgetRemaining)}</span>
+                </div>
+                <div class="summary-item">
+                    <span>Total Products:</span>
+                    <span class="summary-value">${products.length} types</span>
+                </div>
+                <div class="summary-item">
+                    <span>Total Boxes:</span>
+                    <span class="summary-value">${products.reduce((sum, p) => sum + p.quantity, 0)} boxes</span>
+                </div>
+                <hr style="margin: 15px 0;">
+                <div class="summary-item">
+                    <span>Expected Total Revenue:</span>
+                    <span class="summary-value profit-positive">${formatCurrency(totalRevenue)}</span>
+                </div>
+                <div class="summary-item">
+                    <span>Expected Total Profit:</span>
+                    <span class="summary-value ${totalProfit >= 0 ? 'profit-positive' : 'profit-negative'}">${formatCurrency(totalProfit)}</span>
+                </div>
+                <div class="summary-item">
+                    <span>Overall Profit Margin:</span>
+                    <span class="summary-value ${overallProfitMargin >= 0 ? 'profit-positive' : 'profit-negative'}">${overallProfitMargin.toFixed(1)}%</span>
+                </div>
+                <hr style="margin: 15px 0;">
+                <h4 style="color: #27ae60; margin-bottom: 15px;">🎯 Best Performing Product:</h4>
+                <div class="summary-item">
+                    <span>Product:</span>
+                    <span class="summary-value">${bestProduct.name}</span>
+                </div>
+                <div class="summary-item">
+                    <span>Profit Margin:</span>
+                    <span class="summary-value profit-positive">${bestProduct.profitMargin.toFixed(1)}%</span>
+                </div>
+                <div class="summary-item">
+                    <span>Total Profit from this product:</span>
+                    <span class="summary-value profit-positive">${formatCurrency(bestProduct.totalProfit)}</span>
+                </div>
+            `;
+        }
+        
+        function showTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            document.getElementById(tabName + '-tab').classList.add('active');
+            event.target.classList.add('active');
+            
+            if (tabName === 'dashboard') {
+                updateDashboard();
+            }
+        }
+        
+        function saveCurrentOrder() {
+            const totalBudget = parseFloat(document.getElementById('totalBudget').value) || 0;
+            const products = [];
+            
+            const productRows = document.querySelectorAll('.product-row');
+            productRows.forEach(row => {
+                const id = row.id.split('-')[1];
+                const name = document.getElementById(`name-${id}`).value || `Product ${id}`;
+                const supplier = document.getElementById(`supplier-${id}`).value || `Supplier ${id}`;
+                const cost = parseFloat(document.getElementById(`cost-${id}`).value) || 0;
+                const selling = parseFloat(document.getElementById(`selling-${id}`).value) || 0;
+                const quantity = parseInt(document.getElementById(`quantity-${id}`).value) || 0;
+                
+                if (cost > 0 && quantity > 0) {
+                    products.push({
+                        name, supplier, cost, selling, quantity,
+                        totalCost: cost * quantity,
+                        totalProfit: (selling - cost) * quantity,
+                        profitMargin: cost > 0 ? ((selling - cost) / cost) * 100 : 0
+                    });
+                }
+            });
+            
+            if (products.length === 0) {
+                alert('No products to save. Please add products first.');
+                return;
+            }
+            
+            const order = {
+                id: Date.now(),
+                date: new Date().toLocaleDateString('en-PH'),
+                products: products,
+                totalBudget: totalBudget,
+                totalCost: products.reduce((sum, p) => sum + p.totalCost, 0),
+                totalProfit: products.reduce((sum, p) => sum + p.totalProfit, 0),
+                status: 'Pending'
+            };
+            
+            orderHistory.unshift(order);
+            
+            products.forEach(product => {
+                if (!dashboardData.suppliers[product.supplier]) {
+                    dashboardData.suppliers[product.supplier] = {
+                        name: product.supplier,
+                        totalOrders: 0,
+                        totalCost: 0,
+                        totalProfit: 0,
+                        products: [],
+                        avgMargin: 0
+                    };
+                }
+                
+                const supplier = dashboardData.suppliers[product.supplier];
+                supplier.totalOrders += 1;
+                supplier.totalCost += product.totalCost;
+                supplier.totalProfit += product.totalProfit;
+                supplier.products.push(product);
+                supplier.avgMargin = supplier.totalCost > 0 ? (supplier.totalProfit / supplier.totalCost * 100) : 0;
+            });
+            
+            dashboardData.totalOrders += 1;
+            dashboardData.totalInvestment += order.totalCost;
+            dashboardData.totalProfit += order.totalProfit;
+            
+            saveToLocalStorage();
+            alert('Order saved successfully!');
+            updateDashboard();
+        }
+        
+        function updateDashboard() {
+            document.getElementById('total-suppliers').textContent = Object.keys(dashboardData.suppliers).length;
+            document.getElementById('total-orders').textContent = dashboardData.totalOrders;
+            document.getElementById('total-spent').textContent = formatCurrency(dashboardData.totalInvestment);
+            document.getElementById('total-profit-dash').textContent = formatCurrency(dashboardData.totalProfit);
+            
+            let bestSupplier = null;
+            let bestMargin = 0;
+            
+            Object.values(dashboardData.suppliers).forEach(supplier => {
+                if (supplier.avgMargin > bestMargin) {
+                    bestMargin = supplier.avgMargin;
+                    bestSupplier = supplier;
+                }
+            });
+            
+            if (bestSupplier) {
+                document.getElementById('best-supplier').textContent = bestSupplier.name;
+                document.getElementById('best-margin').textContent = bestMargin.toFixed(1) + '%';
+            }
+            
+            const performanceList = document.getElementById('supplier-performance-list');
+            performanceList.innerHTML = '';
+            
+            Object.values(dashboardData.suppliers).forEach(supplier => {
+                const performanceClass = supplier.avgMargin >= 20 ? 'good' : supplier.avgMargin >= 10 ? 'average' : '';
+                
+                const supplierCard = document.createElement('div');
+                supplierCard.className = `supplier-performance ${performanceClass}`;
+                supplierCard.innerHTML = `
+                    <div class="performance-header">
+                        <h4 style="margin: 0;">${supplier.name}</h4>
+                        <span class="order-status ${supplier.avgMargin >= 15 ? 'status-completed' : 'status-pending'}">
+                            ${supplier.avgMargin >= 15 ? 'Excellent' : 'Good'}
+                        </span>
+                    </div>
+                    <div class="performance-metrics">
+                        <div class="performance-metric">
+                            <div class="performance-metric-value">${supplier.totalOrders}</div>
+                            <div class="performance-metric-label">Orders</div>
+                        </div>
+                        <div class="performance-metric">
+                            <div class="performance-metric-value">${formatCurrency(supplier.totalCost)}</div>
+                            <div class="performance-metric-label">Investment</div>
+                        </div>
+                        <div class="performance-metric">
+                            <div class="performance-metric-value">${formatCurrency(supplier.totalProfit)}</div>
+                            <div class="performance-metric-label">Profit</div>
+                        </div>
+                        <div class="performance-metric">
+                            <div class="performance-metric-value">${supplier.avgMargin.toFixed(1)}%</div>
+                            <div class="performance-metric-label">Avg Margin</div>
+                        </div>
+                        <div class="performance-metric">
+                            <div class="performance-metric-value">${supplier.products.length}</div>
+                            <div class="performance-metric-label">Products</div>
+                        </div>
+                    </div>
+                `;
+                performanceList.appendChild(supplierCard);
+            });
+            
+            const historyContainer = document.getElementById('order-history');
+            historyContainer.innerHTML = '';
+            
+            if (orderHistory.length === 0) {
+                historyContainer.innerHTML = '<p style="text-align: center; color: #7f8c8d; margin: 20px 0;">No orders saved yet. Save your current order to start tracking!</p>';
+                return;
+            }
+            
+            orderHistory.forEach(order => {
+                const orderDiv = document.createElement('div');
+                orderDiv.className = 'order-entry';
+                orderDiv.innerHTML = `
+                    <div class="order-header">
+                        <strong>Order #${order.id.toString().slice(-6)}</strong>
+                        <span class="order-date">${order.date}</span>
+                        <span class="order-status status-${order.status.toLowerCase()}">${order.status}</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin: 10px 0;">
+                        <span><strong>Products:</strong> ${order.products.length}</span>
+                        <span><strong>Investment:</strong> ${formatCurrency(order.totalCost)}</span>
+                        <span><strong>Expected Profit:</strong> ${formatCurrency(order.totalProfit)}</span>
+                    </div>
+                    <div style="font-size: 14px; color: #7f8c8d;">
+                        Suppliers: ${[...new Set(order.products.map(p => p.supplier))].join(', ')}
+                    </div>
+                    <button class="export-btn" onclick="updateOrderStatus(${order.id}, 'Shipped')" style="margin-top: 10px; padding: 5px 15px; font-size: 12px;">
+                        Mark as Shipped
+                    </button>
+                `;
+                historyContainer.appendChild(orderDiv);
+            });
+        }
+        
+        function updateOrderStatus(orderId, newStatus) {
+            const order = orderHistory.find(o => o.id === orderId);
+            if (order) {
+                order.status = newStatus;
+                saveToLocalStorage();
+                updateDashboard();
+            }
+        }
+        
+        function saveToLocalStorage() {
+            try {
+                localStorage.setItem('boxOrderHistory', JSON.stringify(orderHistory));
+                localStorage.setItem('boxDashboardData', JSON.stringify(dashboardData));
+            } catch (e) {
+                console.warn('Could not save to localStorage:', e);
+            }
+        }
+        
+        function exportToExcel() {
+            const totalBudget = parseFloat(document.getElementById('totalBudget').value) || 0;
+            const products = [];
+            
+            const productRows = document.querySelectorAll('.product-row');
+            productRows.forEach(row => {
+                const id = row.id.split('-')[1];
+                const name = document.getElementById(`name-${id}`).value || `Product ${id}`;
+                const supplier = document.getElementById(`supplier-${id}`).value || `Supplier ${id}`;
+                const cost = parseFloat(document.getElementById(`cost-${id}`).value) || 0;
+                const selling = parseFloat(document.getElementById(`selling-${id}`).value) || 0;
+                const quantity = parseInt(document.getElementById(`quantity-${id}`).value) || 0;
+                
+                if (cost > 0 && quantity > 0) {
+                    products.push({
+                        'Product Name': name,
+                        'Supplier': supplier,
+                        'Quantity': quantity,
+                        'Cost per Box (₱)': cost,
+                        'Selling Price (₱)': selling,
+                        'Total Cost (₱)': cost * quantity,
+                        'Total Revenue (₱)': selling * quantity,
+                        'Profit per Box (₱)': selling - cost,
+                        'Total Profit (₱)': (selling - cost) * quantity,
+                        'Profit Margin (%)': cost > 0 ? parseFloat(((selling - cost) / cost * 100).toFixed(1)) : 0
+                    });
+                }
+            });
+            
+            if (products.length === 0) {
+                alert('No data to export. Please add products first.');
+                return;
+            }
+            
+            const totalCost = products.reduce((sum, p) => sum + p['Total Cost (₱)'], 0);
+            const totalRevenue = products.reduce((sum, p) => sum + p['Total Revenue (₱)'], 0);
+            const totalProfit = products.reduce((sum, p) => sum + p['Total Profit (₱)'], 0);
+            const totalQuantity = products.reduce((sum, p) => sum + p.Quantity, 0);
+            const overallMargin = totalCost > 0 ? parseFloat((totalProfit / totalCost * 100).toFixed(1)) : 0;
+            
+            products.push({
+                'Product Name': 'TOTAL',
+                'Supplier': 'All Suppliers',
+                'Quantity': totalQuantity,
+                'Cost per Box (₱)': '-',
+                'Selling Price (₱)': '-',
+                'Total Cost (₱)': totalCost,
+                'Total Revenue (₱)': totalRevenue,
+                'Profit per Box (₱)': '-',
+                'Total Profit (₱)': totalProfit,
+                'Profit Margin (%)': overallMargin
+            });
+            
+            const summaryData = [
+                ['Box Order Analysis Report', ''],
+                ['Generated on:', new Date().toLocaleDateString('en-PH')],
+                ['', ''],
+                ['BUDGET SUMMARY', ''],
+                ['Total Budget (₱)', totalBudget],
+                ['Total Investment Required (₱)', totalCost],
+                ['Budget Remaining (₱)', totalBudget - totalCost],
+                ['Budget Utilization (%)', totalBudget > 0 ? parseFloat((totalCost / totalBudget * 100).toFixed(1)) : 0],
+                ['', ''],
+                ['PROFIT SUMMARY', ''],
+                ['Total Revenue (₱)', totalRevenue],
+                ['Total Profit (₱)', totalProfit],
+                ['Overall Profit Margin (%)', overallMargin],
+                ['Total Products', products.length - 1],
+                ['Total Boxes', totalQuantity]
+            ];
+            
+            const wb = XLSX.utils.book_new();
+            const summaryWs = XLSX.utils.aoa_to_sheet(summaryData);
+            XLSX.utils.book_append_sheet(wb, summaryWs, 'Summary');
+            
+            const detailWs = XLSX.utils.json_to_sheet(products);
+            XLSX.utils.book_append_sheet(wb, detailWs, 'Detailed Analysis');
+            
+            const currentDate = new Date().toISOString().split('T')[0];
+            const filename = `Box_Order_Analysis_${currentDate}.xlsx`;
+            
+            XLSX.writeFile(wb, filename);
+        }
+        
+        function exportToCSV() {
+            const products = [];
+            
+            const productRows = document.querySelectorAll('.product-row');
+            productRows.forEach(row => {
+                const id = row.id.split('-')[1];
+                const name = document.getElementById(`name-${id}`).value || `Product ${id}`;
+                const supplier = document.getElementById(`supplier-${id}`).value || `Supplier ${id}`;
+                const cost = parseFloat(document.getElementById(`cost-${id}`).value) || 0;
+                const selling = parseFloat(document.getElementById(`selling-${id}`).value) || 0;
+                const quantity = parseInt(document.getElementById(`quantity-${id}`).value) || 0;
+                
+                if (cost > 0 && quantity > 0) {
+                    products.push([
+                        name, supplier, quantity, cost, selling,
+                        cost * quantity, selling * quantity, selling - cost,
+                        (selling - cost) * quantity,
+                        cost > 0 ? parseFloat(((selling - cost) / cost * 100).toFixed(1)) : 0
+                    ]);
+                }
+            });
+            
+            if (products.length === 0) {
+                alert('No data to export. Please add products first.');
+                return;
+            }
+            
+            let csvContent = 'Product Name,Supplier,Quantity,Cost per Box (₱),Selling Price (₱),Total Cost (₱),Total Revenue (₱),Profit per Box (₱),Total Profit (₱),Profit Margin (%)\n';
+            
+            products.forEach(row => {
+                csvContent += row.join(',') + '\n';
+            });
+            
+            const totalCost = products.reduce((sum, p) => sum + p[5], 0);
+            const totalRevenue = products.reduce((sum, p) => sum + p[6], 0);
+            const totalProfit = products.reduce((sum, p) => sum + p[8], 0);
+            const totalQuantity = products.reduce((sum, p) => sum + p[2], 0);
+            const overallMargin = totalCost > 0 ? parseFloat((totalProfit / totalCost * 100).toFixed(1)) : 0;
+            
+            csvContent += `TOTAL,All Suppliers,${totalQuantity},-,-,${totalCost},${totalRevenue},-,${totalProfit},${overallMargin}\n`;
+            
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            const currentDate = new Date().toISOString().split('T')[0];
+            const filename = `Box_Order_Analysis_${currentDate}.csv`;
+            
+            if (link.download !== undefined) {
+                const url = URL.createObjectURL(blob);
+                link.setAttribute('href', url);
+                link.setAttribute('download', filename);
+                link.style.visibility = 'hidden';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+        }
+        
+        // PWA Functions
+        function registerServiceWorker() {
+            if ('serviceWorker' in navigator) {
+                const swCode = `
+                    const CACHE_NAME = 'box-order-app-v1';
+                    const urlsToCache = [
+                        '/',
+                        'https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js'
+                    ];
+                    
+                    self.addEventListener('install', event => {
+                        event.waitUntil(
+                            caches.open(CACHE_NAME)
+                                .then(cache => cache.addAll(urlsToCache))
+                        );
+                    });
+                    
+                    self.addEventListener('fetch', event => {
+                        event.respondWith(
+                            caches.match(event.request)
+                                .then(response => {
+                                    if (response) return response;
+                                    return fetch(event.request);
+                                })
+                        );
+                    });
+                `;
+                
+                const blob = new Blob([swCode], { type: 'application/javascript' });
+                const swUrl = URL.createObjectURL(blob);
+                
+                navigator.serviceWorker.register(swUrl)
+                    .then(registration => console.log('SW registered'))
+                    .catch(error => console.log('SW registration failed'));
+            }
+        }
+        
+        function updateOnlineStatus() {
+            const indicator = document.getElementById('offline-indicator');
+            if (navigator.onLine) {
+                indicator.textContent = '📶 Online';
+                indicator.classList.add('online');
+                indicator.style.display = 'block';
+                setTimeout(() => indicator.style.display = 'none', 3000);
+            } else {
+                indicator.textContent = '📶 Offline Mode';
+                indicator.classList.remove('online');
+                indicator.style.display = 'block';
+            }
+            isOnline = navigator.onLine;
+        }
+        
+        function showPWAPrompt() {
+            if (deferredPrompt && !localStorage.getItem('pwa-prompt-dismissed')) {
+                document.getElementById('pwa-install-prompt').style.display = 'flex';
+            }
+        }
+        
+        function installPWA() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    deferredPrompt = null;
+                    closePWAPrompt();
+                });
+            }
+        }
+        
+        function closePWAPrompt() {
+            document.getElementById('pwa-install-prompt').style.display = 'none';
+            localStorage.setItem('pwa-prompt-dismissed', 'true');
+        }
+        
+        // Event Listeners
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            setTimeout(showPWAPrompt, 5000);
+        });
+        
+        window.addEventListener('online', updateOnlineStatus);
+        window.addEventListener('offline', updateOnlineStatus);
+        
+        window.addEventListener('load', () => {
+            registerServiceWorker();
+            updateOnlineStatus();
+            
+            if (orderHistory.length > 0) {
+                updateDashboard();
+            }
+            
+            if (window.matchMedia('(max-width: 768px)').matches) {
+                setTimeout(() => {
+                    if (!localStorage.getItem('pwa-prompt-dismissed')) {
+                        showPWAPrompt();
+                    }
+                }, 10000);
+            }
+        });
+        
+        window.addEventListener('appinstalled', () => {
+            closePWAPrompt();
+            console.log('PWA installed successfully');
+        });
+        
+        // Prevent zoom on mobile
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function (event) {
+            const now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+        
+        // Auto-calculate when budget changes
+        document.getElementById('totalBudget').addEventListener('input', calculateOptimalOrder);
+        
+        // Initialize with sample products
+        addProduct();
+        addProduct();
+        addProduct();
+        calculateOptimalOrder();
+    </script>
+</body>
+</html>
+                <td>-</td>
+                <td><strong>${formatCurrency(totalCost)}</strong></td>
+                <td><strong>${formatCurrency(totalRevenue)}</strong></td>
+                <td>-</td>
